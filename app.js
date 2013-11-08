@@ -82,8 +82,7 @@ var robotServer = net.createServer(function (socket) {
   });
 });
 
-console.log('process.env.OPENSHIFT_NODEJS_ROBOT_PORT = ' + process.env.OPENSHIFT_NODEJS_ROBOT_PORT);
-var robotServerPort = process.env.OPENSHIFT_NODEJS_ROBOT_PORT || 9999;
+var robotServerPort = 465;
 robotServer.listen(robotServerPort, ipaddress, function () {
   console.log('Robot server listening on port ' + robotServerPort);
 });
