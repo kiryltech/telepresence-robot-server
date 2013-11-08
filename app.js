@@ -83,6 +83,6 @@ var robotServer = net.createServer(function (socket) {
 });
 
 var robotServerPort = 9999;
-robotServer.listen(robotServerPort, function () {
+robotServer.listen(robotServerPort, ipaddress, function () {
   console.log('Robot server listening on port ' + robotServerPort);
 });
