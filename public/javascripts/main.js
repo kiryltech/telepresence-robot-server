@@ -13,7 +13,7 @@
   };
 
   function connectToServer() {
-    socket = io.connect('http://localhost');
+    socket = io.connect(window.location.origin);
     socket.on('robotStatus', function (data) {
       document.getElementById('robotStatus').innerHTML = data;
     });
