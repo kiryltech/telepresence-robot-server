@@ -13,7 +13,7 @@
   };
 
   function connectToServer() {
-    socket = io.connect(window.location.origin);
+    socket = io.connect("http://robot-duborenko.rhcloud.com:8000/");
     socket.on('robotStatus', function (data) {
       document.getElementById('robotStatus').innerHTML = data;
     });
