@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Robot Control</title>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="javascripts/main.js"></script>
+    <link href="stylesheets/style.css" media="all" rel="stylesheet" type="text/css"/>
+</head>
+<body onload="main()">
+    <label>Robot status: </label>
+    <span id="robotStatus">unknown</span>
+    <div>
+        <table>
+            <tbody>
+                <tr>
+                    <td/>
+                    <td><button id="forward">Forward</button></td>
+                    <td/>
+                </tr>
+                <tr>
+                    <td><button id="left">Left</button></td>
+                    <td/>
+                    <td><button id="right">Right</button></td>
+                </tr>
+                <tr>
+                    <td/>
+                    <td><button id="backward">Backward</button></td>
+                    <td/>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
