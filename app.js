@@ -82,7 +82,7 @@ var robotServer = net.createServer(function (socket) {
   });
 });
 
-var robotServerPort = 465;
+var robotServerPort = 4444;
 robotServer.listen(robotServerPort, ipaddress, function () {
   console.log('Robot server listening on port ' + robotServerPort);
 });
