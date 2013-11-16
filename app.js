@@ -9,7 +9,7 @@ var path = require('path');
 var app = express();
 
 // all environments
-var ipaddress = process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1";
+var ipaddress = process.env.OPENSHIFT_NODEJS_IP || "0.0.0.0";
 var port      = process.env.OPENSHIFT_NODEJS_PORT || 8080;
 app.set('port', port);
 app.set('views', path.join(__dirname, 'views'));
@@ -42,7 +42,8 @@ io.sockets.on('connection', function (socket) {
   socket.emit('robotStatus', robot ? "connected" : "disconnected");
   socket.on('action', function (data) {
     if (robot) {
-      robot.write(data.requestId + ":" + data.action.toUpperCase() + "\r\n");
+      console.log(data.requestId + ":" + data.data);
+      robot.write(data.requestId + ":" + data.data + "\r\n");
     }
   });
 });
@@ -56,6 +57,7 @@ io.sockets.on('disconnect', function (socket) {
 
 var net = require('net');
 var robotServer = net.createServer(function (socket) {
+  console.log('connected');
   socket.setEncoding("utf-8");
   socket.on('data', function (data) {
     data = data.split("\n");
@@ -71,6 +73,7 @@ var robotServer = net.createServer(function (socket) {
     })
   });
   socket.on('end', function () {
+    console.log('disconnected');
     robot = null;
     clients.forEach(function (socket) {
       socket.emit('robotStatus', "disconnected");
@@ -82,7 +85,7 @@ var robotServer = net.createServer(function (socket) {
   });
 });
 
-var robotServerPort = 4444;
+var robotServerPort = 8081;
 robotServer.listen(robotServerPort, ipaddress, function () {
   console.log('Robot server listening on port ' + robotServerPort);
 });
